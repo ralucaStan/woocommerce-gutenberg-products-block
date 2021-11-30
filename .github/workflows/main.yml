@@ -25,9 +25,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a set of commands using the runners shell
+      # Install and build, and then create a zip file which you can use to install WooCommerce Blocks in WordPress admin
       - name: Build project and create zip file
-        run: npm run package-plugin:zip-only
+        run: npm run package-plugin
         
       - name: Copy file via ssh password
         uses: appleboy/scp-action@master
