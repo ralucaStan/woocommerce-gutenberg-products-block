@@ -72,9 +72,9 @@ jobs:
                 username: ${{ secrets.SSH_USERNAME }}
                 password: ${{ secrets.SSH_PASSWORD }}
                 port: 22
-                source: "woocommerce-gutenberg-products-block.zip"
-                # source: "README.md"
-                target: "/srv/users/user05e34584/apps/user05e34584/public/wp-content/plugins/" 
+#                 source: "woocommerce-gutenberg-products-block.zip"
+                source: "README.md"
+                target: "/srv/users/${{ secrets.SSH_USERNAME }}/apps/${{ secrets.SSH_USERNAME }}/public/wp-content/plugins/" 
 
   
 
