@@ -17,6 +17,7 @@ on:
 jobs:
   Setup:
         runs-on: ubuntu-latest
+        # Create environment to be able to access environment secrets for SSH cred., as this is a fork
         environment: test
         name: Setup
         steps:
@@ -62,19 +63,26 @@ jobs:
             - name: Composer install
               run: |
                   composer install
+                  
             - name: Build project and create zip file
               run: npm run package-plugin
               
-            - name: Copy file via ssh password
-              uses: appleboy/scp-action@master
+            - name: Unzip archive to folder
+              run: |
+                sudo mkdir woocommerce-gutenberg-products-block
+                echo "woocommerce-gutenberg-products-block created"
+                sudo unzip woocommerce-gutenberg-products-block.zip -d woocommerce-gutenberg-products-block
+                echo "zip extracted to ./woocommerce-gutenberg-products-block"
+          
+            - name: Copy folder content recursively to remote
+              uses: garygrossgarten/github-action-scp@release
               with:
+                local: woocommerce-gutenberg-products-block
+                remote: /srv/users/${{ secrets.SSH_USER }}/apps/${{ secrets.SSH_USER }}/public/wp-content/plugins/woocommerce-gutenberg-products-block
                 host: ${{ secrets.HOST }}
-                username: ${{ secrets.SSH_USERNAME }}
-                password: ${{ secrets.SSH_PASSWORD }}
-                port: 22
-#                 source: "woocommerce-gutenberg-products-block.zip"
-                source: "README.md"
-                target: "/srv/users/${{ secrets.SSH_USERNAME }}/apps/${{ secrets.SSH_USERNAME }}/public/wp-content/plugins/" 
+                username: ${{ secrets.SSH_USER }}
+                password: ${{ secrets.SSH_PASSWORD }}   
+              
 
   
 
