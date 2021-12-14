@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Deploy Zip 
+name: Deploy trunk to jurassic.ninja
 
 # Controls when the workflow will run
 on:
@@ -67,14 +67,14 @@ jobs:
             - name: Build project and create zip file
               run: npm run package-plugin
               
-            - name: Unzip archive to folder
+            - name: Unzip archive to woocommerce-gutenberg-products-block folder
               run: |
                 sudo mkdir woocommerce-gutenberg-products-block
                 echo "woocommerce-gutenberg-products-block created"
                 sudo unzip woocommerce-gutenberg-products-block.zip -d woocommerce-gutenberg-products-block
                 echo "zip extracted to ./woocommerce-gutenberg-products-block"
           
-            - name: Copy folder content recursively to remote
+            - name: Copy woocommerce-gutenberg-products-block folder content recursively to remote
               uses: garygrossgarten/github-action-scp@release
               with:
                 local: woocommerce-gutenberg-products-block
