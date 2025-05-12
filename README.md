@@ -1,6 +1,6 @@
 # 📣 Announcement: New documentation location
 
-The documentation for WooCommerce Blocks has moved to the [WooCommerce monorepo](https://github.com/woocommerce/woocommerce/tree/trunk/plugins/woocommerce-blocks/docs/).
+The documentation for WooCommerce Blocks has moved to the [WooCommerce monorepo](https://github.com/woocommerce/woocommerce/tree/6e1a5757868748a5bf4c20e44d83214c9818ab41/plugins/woocommerce/client/blocks/docs).
 
 Please refer to the documentation in the new location as the files in this repository will no longer be updated and the repository will be archived.
 
